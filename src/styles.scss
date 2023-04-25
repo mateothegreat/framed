@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'https://fonts.googleapis.com/css?family=Ubuntu:300,400,600,700';
+
+$font-family: 'Ubuntu', sans-serif;
+
+body {
+    color: rgba(238, 238, 238, 1);
+    //font-family: "Ubuntu Mono", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif, Apple Color Emoji,
+    //    Segoe UI Emoji;
+    font-family: $font-family;
+    margin: 0;
+}
