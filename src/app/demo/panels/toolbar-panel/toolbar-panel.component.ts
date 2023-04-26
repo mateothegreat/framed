@@ -10,22 +10,26 @@ export class ToolbarPanelComponent {
     public toolbar: FramedToolbar = new FramedToolbar({
         top: [
             {
-                icon: 'logout',
-                classes: 'text-dark-3/20'
+                icon: 'home',
+                classes: 'text-black'
             },
             {
-                icon: 'logout',
-                classes: 'text-dark-3/20'
+                icon: 'squares',
+                classes: 'fill-black'
+            },
+            {
+                icon: 'tags',
+                classes: 'fill-black'
+            },
+            {
+                icon: 'settings',
+                classes: 'fill-black'
             }
         ],
         bottom: [
             {
-                icon: 'logout',
-                classes: 'text-dark-3/20'
-            },
-            {
-                icon: 'logout',
-                classes: 'text-dark-3/20'
+                icon: 'user',
+                classes: 'fill-black'
             }
         ]
     });
