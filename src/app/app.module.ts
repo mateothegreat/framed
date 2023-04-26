@@ -9,6 +9,8 @@ import { OneDemoComponent } from './demo/one-demo/one-demo.component';
 import { LeftPanelComponent } from './demo/panels/left-panel/left-panel.component';
 import { RightPanelComponent } from './demo/panels/right-panel/right-panel.component';
 import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
+import { ResizablePanelComponent } from './demo/panels/resizable-panel/resizable-panel.component';
+import { FullWidthPanelComponent } from './demo/panels/full-width-panel/full-width-panel.component';
 
 @NgModule({
     declarations: [
@@ -17,7 +19,9 @@ import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
         TwoDemoComponent,
         HeaderComponent,
         LeftPanelComponent,
-        RightPanelComponent
+        RightPanelComponent,
+        ResizablePanelComponent,
+        FullWidthPanelComponent
     ],
     imports: [
         BrowserModule,

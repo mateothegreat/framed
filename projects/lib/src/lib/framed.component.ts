@@ -1,86 +1,94 @@
-import { AfterViewInit, ChangeDetectorRef, Component, Input, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
-import { FramedFactoryOutlet } from './factory/framed-factory-outlet';
-import { FramedFactoryOutletPosition } from './factory/framed-factory-outlet-position';
+import { Component, Renderer2, ViewChild, ViewContainerRef } from '@angular/core';
+import { fromEvent, Subject, takeUntil } from 'rxjs';
 import { FramedFactoryService } from './factory/framed-factory.service';
 import { FramedConfig } from './framed-config';
+import { FramedLayoutService } from './framed-layout.service';
 import { FramedService } from './framed.service';
 
 @Component({
     selector: 'framed',
     template: `
         <div class="absolute bottom-0 left-0 right-0 top-0 flex flex-col bg-black">
-            <ng-container #top></ng-container>
-            <div class="flex flex-1 h-full">
-                <!-- left toolbar -->
-                <div [ngClass]="framedService.config.theme.toolbar" class="flex">left</div>
-                <!-- left panels -->
-                <ng-container #left *ngFor="let panel of (framedFactoryService.outlets['left'] | async)?.children">
-                    <ng-container *ngComponentOutlet="panel.componentType"></ng-container>
-                </ng-container>
-                <!-- center -->
-                <div class="flex flex-1 flex-col h-full">
-                    <ng-content></ng-content>
-                </div>
-                <!-- right panels -->
-                <ng-container #right *ngFor="let panel of (framedFactoryService.outlets['right'] | async)?.children">
-                    <ng-container *ngComponentOutlet="panel.componentType"></ng-container>
-                </ng-container>
+            <div #container class="flex w-full h-full">
+                <framed-panel
+                    *ngFor="let name of framedFactoryService.configs | keyvalue"
+                    (dragStart)="onDragStart($event)"
+                    [config]="framedFactoryService.configs[name.key]"
+                    [style.width]="
+                        framedFactoryService.configs[name.key].dimensions.current.width > 0
+                            ? framedFactoryService.configs[name.key].dimensions.current.width + 'px'
+                            : 'auto'
+                    "
+                    [class.flex-1]="framedFactoryService.configs[name.key].dimensions.full"
+                    class="h-full"></framed-panel>
             </div>
-            <ng-container #bottom></ng-container>
         </div>
     `
 })
-export class FramedComponent implements OnInit, AfterViewInit {
-    @ViewChild('top', { read: ViewContainerRef }) private top: ViewContainerRef;
-    @ViewChild('bottom', { read: ViewContainerRef }) private bottom: ViewContainerRef;
-    @ViewChild('left', { read: ViewContainerRef }) private left: ViewContainerRef;
-    @ViewChild('right', { read: ViewContainerRef }) private right: ViewContainerRef;
+export class FramedComponent {
+    @ViewChild('container', { read: ViewContainerRef }) private container: ViewContainerRef;
 
-    @Input() public config: FramedConfig;
+    public show: boolean;
+    public resizing: boolean;
+    public dragging: string;
+    public running: boolean;
+    public prev: string;
+
+    private isResizing = false;
+    private destroy = new Subject<void>();
 
     public constructor(
         public readonly framedService: FramedService,
         public readonly framedFactoryService: FramedFactoryService,
-        private readonly changeDetectorRef: ChangeDetectorRef
-    ) {}
-
-    public ngOnInit(): void {
-        if (this.config) {
-            this.framedService.apply(this.config);
-        }
+        public readonly framedLayoutService: FramedLayoutService,
+        private readonly renderer: Renderer2
+    ) {
+        document.addEventListener('mouseup', () => {
+            this.dragging = null;
+            this.destroy.next();
+        });
     }
 
-    public ngAfterViewInit() {
-        this.framedFactoryService.outlets[FramedFactoryOutletPosition.TOP].next(
-            new FramedFactoryOutlet({
-                viewContainerRef: this.top
-            })
-        );
+    onDragStart(config: FramedConfig<any>): void {
+        console.log('drag start', config);
+        this.dragging = config.name;
+        fromEvent(document, 'mousemove')
+            .pipe(takeUntil(this.destroy))
+            .subscribe(e => {
+                this.onMouseMove(config, e as MouseEvent);
+            });
+    }
 
-        this.framedFactoryService.outlets[FramedFactoryOutletPosition.BOTTOM].next(
-            new FramedFactoryOutlet({
-                viewContainerRef: this.bottom
-            })
-        );
+    public onMouseMove(config: FramedConfig<any>, event: MouseEvent): void {
+        if (!this.dragging) {
+            return;
+        }
 
-        this.framedFactoryService.outlets[FramedFactoryOutletPosition.LEFT].next(
-            new FramedFactoryOutlet({
-                viewContainerRef: this.left
-            })
-        );
+        if (!this.running) {
+            this.running = true;
+            let remaining = window.innerWidth - event.clientX;
 
-        this.framedFactoryService.outlets[FramedFactoryOutletPosition.RIGHT].next(
-            new FramedFactoryOutlet({
-                viewContainerRef: this.right
-            })
-        );
+            for (let child of this.container.element.nativeElement.children) {
+                child.classList.remove('flex-1');
+                child.classList.remove('width');
+                // remaining -=
+                //     child.getBoundingClientRect().width / Object.keys(this.framedFactoryService.configs).length;
+            }
 
-        //
-        // Prevent ExpressionChangedAfterItHasBeenCheckedError because we've updated the DOM
-        // by generating the outlet children above.
-        //
-        // (ERROR Error: NG0100: ExpressionChangedAfterItHasBeenCheckedError: Expression has changed after it was checked. Previous value: 'null'. Current value: '[object Object]'. Find more at https://angular.io/errors/NG0100)
-        //
-        this.changeDetectorRef.detectChanges();
+            console.log(event.clientX, remaining);
+
+            console.log(
+                `setting to: prev=${this.prev}, current=${
+                    this.framedFactoryService.configs[this.dragging].dimensions.current.width
+                }, offsetX=${event.offsetX}`
+            );
+            this.prev = this.dragging;
+            this.dragging = null;
+
+            this.framedFactoryService.configs[this.prev].dimensions.current.width = event.offsetX + 1500;
+            setTimeout(() => {
+                this.running = false;
+            }, 100);
+        }
     }
 }
