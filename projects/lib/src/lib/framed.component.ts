@@ -11,15 +11,13 @@ import { FramedService } from './framed.service';
         <div class="absolute bottom-0 left-0 right-0 top-0 flex flex-col bg-black">
             <div #container class="flex w-full h-full">
                 <framed-panel
-                    *ngFor="let name of framedFactoryService.configs | keyvalue"
+                    *ngFor="let config of framedFactoryService.configs"
                     (dragStart)="onDragStart($event)"
-                    [config]="framedFactoryService.configs[name.key]"
+                    [config]="config"
                     [style.width]="
-                        framedFactoryService.configs[name.key].dimensions.current.width > 0
-                            ? framedFactoryService.configs[name.key].dimensions.current.width + 'px'
-                            : 'auto'
+                        config.dimensions.current.width > 0 ? config.dimensions.current.width + 'px' : 'auto'
                     "
-                    [class.flex-1]="framedFactoryService.configs[name.key].dimensions.full"
+                    [class.flex-1]="config.dimensions.full"
                     class="h-full"></framed-panel>
             </div>
         </div>
@@ -60,35 +58,35 @@ export class FramedComponent {
     }
 
     public onMouseMove(config: FramedConfig<any>, event: MouseEvent): void {
-        if (!this.dragging) {
-            return;
-        }
-
-        if (!this.running) {
-            this.running = true;
-            let remaining = window.innerWidth - event.clientX;
-
-            for (let child of this.container.element.nativeElement.children) {
-                child.classList.remove('flex-1');
-                child.classList.remove('width');
-                // remaining -=
-                //     child.getBoundingClientRect().width / Object.keys(this.framedFactoryService.configs).length;
-            }
-
-            console.log(event.clientX, remaining);
-
-            console.log(
-                `setting to: prev=${this.prev}, current=${
-                    this.framedFactoryService.configs[this.dragging].dimensions.current.width
-                }, offsetX=${event.offsetX}`
-            );
-            this.prev = this.dragging;
-            this.dragging = null;
-
-            this.framedFactoryService.configs[this.prev].dimensions.current.width = event.offsetX + 1500;
-            setTimeout(() => {
-                this.running = false;
-            }, 100);
-        }
+        // if (!this.dragging) {
+        //     return;
+        // }
+        //
+        // if (!this.running) {
+        //     this.running = true;
+        //     let remaining = window.innerWidth - event.clientX;
+        //
+        //     for (let child of this.container.element.nativeElement.children) {
+        //         child.classList.remove('flex-1');
+        //         child.classList.remove('width');
+        //         // remaining -=
+        //         //     child.getBoundingClientRect().width / Object.keys(this.framedFactoryService.configs).length;
+        //     }
+        //
+        //     console.log(event.clientX, remaining);
+        //
+        //     console.log(
+        //         `setting to: prev=${this.prev}, current=${
+        //             this.framedFactoryService.configs[this.dragging].dimensions.current.width
+        //         }, offsetX=${event.offsetX}`
+        //     );
+        //     this.prev = this.dragging;
+        //     this.dragging = null;
+        //
+        //     this.framedFactoryService.configs[this.prev].dimensions.current.width = event.offsetX + 1500;
+        //     setTimeout(() => {
+        //         this.running = false;
+        //     }, 100);
+        // }
     }
 }

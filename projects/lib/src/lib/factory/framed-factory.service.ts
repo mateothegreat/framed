@@ -11,7 +11,7 @@ import { FramedFactoryOutletPosition } from './framed-factory-outlet-position';
 })
 export class FramedFactoryService {
     public count = 3;
-    public configs: { [key: string]: FramedConfig<any> } = {};
+    public configs: FramedConfig<any>[] = [];
     public outlets = {
         [FramedFactoryOutletPosition.TOP]: new ReplaySubject<FramedFactoryOutlet>(),
         [FramedFactoryOutletPosition.BOTTOM]: new ReplaySubject<FramedFactoryOutlet>(),
@@ -40,9 +40,8 @@ export class FramedFactoryService {
     }
 
     public add<T>(config: FramedConfig<T>): void {
-        this.configs[config.name] = new FramedConfig<any>(config);
+        this.configs.push(new FramedConfig<any>(config));
         this.rightSize();
-        console.log(this.configs[config.name]);
     }
 
     public rightSize(): void {
