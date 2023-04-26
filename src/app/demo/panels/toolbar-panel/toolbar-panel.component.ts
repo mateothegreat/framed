@@ -11,25 +11,25 @@ export class ToolbarPanelComponent {
         top: [
             {
                 icon: 'home',
-                classes: 'text-black'
+                classes: 'text-dark-2/20 hover:text-accent-4 cursor-pointer'
             },
             {
                 icon: 'squares',
-                classes: 'fill-black'
+                classes: 'fill-dark-2/20 hover:fill-accent-4 cursor-pointer'
             },
             {
                 icon: 'tags',
-                classes: 'fill-black'
+                classes: 'fill-dark-2/20 hover:fill-accent-4 cursor-pointer'
             },
             {
                 icon: 'settings',
-                classes: 'fill-black'
+                classes: 'fill-dark-2/20 hover:fill-accent-4 cursor-pointer'
             }
         ],
         bottom: [
             {
                 icon: 'user',
-                classes: 'fill-black'
+                classes: 'fill-dark-2/20 hover:fill-accent-4 cursor-pointer'
             }
         ]
     });
