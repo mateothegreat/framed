@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { FramedBreadcrumbsComponent } from '../../projects/lib/src/lib/components/breadcrumbs/breadcrumbs.component';
 import { FramedExpandableComponent } from '../../projects/lib/src/lib/components/expandable/expandable.component';
+import { FramedToolbarComponent } from '../../projects/lib/src/lib/components/toolbar/toolbar.component';
 import { FramedModule } from '../../projects/lib/src/lib/framed.module';
 
 import { AppComponent } from './app.component';
@@ -14,6 +16,7 @@ import { LeftPanelComponent } from './demo/panels/left-panel/left-panel.componen
 import { ResizablePanelComponent } from './demo/panels/resizable-panel/resizable-panel.component';
 import { RightPanelComponent } from './demo/panels/right-panel/right-panel.component';
 import { RouterPanelComponent } from './demo/panels/router-panel/router-panel.component';
+import { ToolbarPanelComponent } from './demo/panels/toolbar-panel/toolbar-panel.component';
 import { RandomComponent } from './demo/random/random.component';
 import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
 
@@ -30,12 +33,15 @@ import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
         ExpandablesPanelComponent,
         RandomComponent,
         RouterPanelComponent,
-        ExpandableCustomHeaderComponent
+        ExpandableCustomHeaderComponent,
+        ToolbarPanelComponent
     ],
     imports: [
         BrowserModule,
         FramedModule,
+        FramedBreadcrumbsComponent,
         FramedExpandableComponent,
+        FramedToolbarComponent,
         RouterModule.forRoot([
             {
                 path: 'one',

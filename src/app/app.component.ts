@@ -4,6 +4,7 @@ import { FramedThemeDark } from '../../projects/lib/src/lib/framed-theme';
 import { FramedService } from '../../projects/lib/src/lib/framed.service';
 import { ExpandablesPanelComponent } from './demo/panels/expandables-panel/expandables-panel.component';
 import { RouterPanelComponent } from './demo/panels/router-panel/router-panel.component';
+import { ToolbarPanelComponent } from './demo/panels/toolbar-panel/toolbar-panel.component';
 
 @Component({
     selector: 'app-root',
@@ -12,6 +13,19 @@ import { RouterPanelComponent } from './demo/panels/router-panel/router-panel.co
 })
 export class AppComponent {
     public constructor(private readonly framedService: FramedService) {
+        framedService.framedFactoryService.add({
+            name: 'toolbar',
+            componentType: ToolbarPanelComponent,
+            divider: true,
+            resizable: true,
+            dimensions: new FramedDimensions({
+                full: false
+            }),
+            theme: new FramedThemeDark({
+                panel: 'bg-dark-5/50',
+                divider: 'bg-dark-5/90'
+            })
+        });
         framedService.framedFactoryService.add({
             name: 'expandables',
             componentType: ExpandablesPanelComponent,
