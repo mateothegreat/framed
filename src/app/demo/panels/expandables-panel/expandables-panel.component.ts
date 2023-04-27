@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Expandable } from '@mateothegreat/framed';
+import { Expandable } from 'lib';
 import { RandomComponent } from '../../random/random.component';
 import { ExpandableCustomHeaderComponent } from './expandable-custom-header/expandable-custom-header.component';
 

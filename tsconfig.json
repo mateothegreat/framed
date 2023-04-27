@@ -7,8 +7,8 @@
         "noImplicitOverride": true,
         "noPropertyAccessFromIndexSignature": true,
         "paths": {
-            "@mateothegreat/*": [
-                "./dist/@mateothegreat/*"
+            "lib": [
+                "dist/lib"
             ]
         },
         "strictNullChecks": false,

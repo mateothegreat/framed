@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+
 import { FramedBreadcrumbsComponent } from '../../projects/lib/src/lib/components/breadcrumbs/breadcrumbs.component';
+import { FramedButtonComponent } from '../../projects/lib/src/lib/components/buttons/button.component';
 import { FramedExpandableComponent } from '../../projects/lib/src/lib/components/expandable/expandable.component';
+import { FramedRadioComponents } from '../../projects/lib/src/lib/components/radios/radio-components.component';
+import { FramedToggleComponent } from '../../projects/lib/src/lib/components/toggle/toggle.component';
 import { FramedToolbarComponent } from '../../projects/lib/src/lib/components/toolbar/toolbar.component';
 import { FramedModule } from '../../projects/lib/src/lib/framed.module';
 
@@ -19,6 +23,7 @@ import { RouterPanelComponent } from './demo/panels/router-panel/router-panel.co
 import { ToolbarPanelComponent } from './demo/panels/toolbar-panel/toolbar-panel.component';
 import { RandomComponent } from './demo/random/random.component';
 import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
+import { CodeBlockComponent } from './shared/code-block.component';
 
 @NgModule({
     declarations: [
@@ -40,7 +45,10 @@ import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
         BrowserModule,
         FramedModule,
         FramedBreadcrumbsComponent,
+        FramedButtonComponent,
         FramedExpandableComponent,
+        FramedRadioComponents,
+        FramedToggleComponent,
         FramedToolbarComponent,
         RouterModule.forRoot([
             {
@@ -56,7 +64,8 @@ import { TwoDemoComponent } from './demo/two-demo/two-demo.component';
                 redirectTo: 'one',
                 pathMatch: 'full'
             }
-        ])
+        ]),
+        CodeBlockComponent
     ],
     bootstrap: [AppComponent]
 })

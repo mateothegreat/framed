@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Expandable } from '@mateothegreat/framed';
+import { Expandable } from 'lib';
 
 @Component({
     selector: 'app-random',

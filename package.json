@@ -7,7 +7,8 @@
         "build": "ng build lib && ng build",
         "build:icons": "svg-to-ts-object",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "release": "cd projects/lib && npm version patch && cd ../../ && ng build lib && cd dist/lib && npm publish --access=public"
     },
     "main": "dist/framed/index.html",
     "private": true,
@@ -20,6 +21,7 @@
         "@angular/platform-browser": "^15.2.0",
         "@angular/platform-browser-dynamic": "^15.2.0",
         "@angular/router": "^15.2.0",
+        "prismjs": "^1.29.0",
         "rxjs": "~7.8.0",
         "tslib": "^2.3.0",
         "zone.js": "~0.12.0"
@@ -30,6 +32,7 @@
         "@angular/compiler-cli": "^15.2.0",
         "@mateothegreat/eslint-config": "^0.0.32",
         "@types/jasmine": "~4.3.0",
+        "@types/prismjs": "^1.26.0",
         "autoprefixer": "^10.4.14",
         "jasmine-core": "~4.5.0",
         "karma": "~6.4.0",
