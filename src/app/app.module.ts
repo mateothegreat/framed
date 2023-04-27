@@ -8,6 +8,7 @@ import { FramedExpandableComponent } from '../../projects/lib/src/lib/components
 import { FramedRadioComponents } from '../../projects/lib/src/lib/components/radios/radio-components.component';
 import { FramedToggleComponent } from '../../projects/lib/src/lib/components/toggle/toggle.component';
 import { FramedToolbarComponent } from '../../projects/lib/src/lib/components/toolbar/toolbar.component';
+import { FramedTypeaheadComponent } from '../../projects/lib/src/lib/components/typeahead/typeahead.component';
 import { FramedModule } from '../../projects/lib/src/lib/framed.module';
 
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ import { CodeBlockComponent } from './shared/code-block.component';
         FramedRadioComponents,
         FramedToggleComponent,
         FramedToolbarComponent,
+        FramedTypeaheadComponent,
         RouterModule.forRoot([
             {
                 path: 'one',

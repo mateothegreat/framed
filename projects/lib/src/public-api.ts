@@ -22,3 +22,5 @@ export * from './lib/components/toolbar/toolbar';
 export * from './lib/components/toolbar/toolbar.component';
 export * from './lib/components/toggle/toggle';
 export * from './lib/components/toggle/toggle.component';
+export * from './lib/components/typeahead/typeahead';
+export * from './lib/components/typeahead/typeahead.component';

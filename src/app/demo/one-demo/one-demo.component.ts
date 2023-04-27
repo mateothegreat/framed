@@ -4,6 +4,7 @@ import { FramedLevel } from '../../../../projects/lib/src/lib/common/levels';
 import { Breadcrumb } from '../../../../projects/lib/src/lib/components/breadcrumbs/breadcrumb';
 import { FramedButton } from '../../../../projects/lib/src/lib/components/buttons/button';
 import { FramedToggle } from '../../../../projects/lib/src/lib/components/toggle/toggle';
+import { FramedTypeahead } from '../../../../projects/lib/src/lib/components/typeahead/typeahead';
 import { TwoDemoComponent } from '../two-demo/two-demo.component';
 
 @Component({
@@ -51,5 +52,10 @@ export class OneDemoComponent {
         level: FramedLevel.WARNING,
         align: FramedAlignment.LEFT,
         checked: true
+    });
+
+    public typeahead: FramedTypeahead<string> = new FramedTypeahead({
+        data: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut'],
+        selected: ['Alabama', 'Alaska']
     });
 }
