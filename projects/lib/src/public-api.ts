@@ -12,6 +12,7 @@ export * from './lib/components/buttons/button';
 export * from './lib/components/buttons/button.component';
 export * from './lib/components/buttons/button-dropdown.component';
 export * from './lib/components/buttons/button-toggle.component';
+export * from './lib/components/forms/checkbox.component';
 export * from './lib/components/forms/form';
 export * from './lib/components/forms/form-control';
 export * from './lib/components/forms/form-control-type';

@@ -94,6 +94,42 @@ export class OneDemoComponent {
                         type: FramedFormControlType.TEXTAREA
                     }
                 ]
+            },
+            {
+                controls: [
+                    {
+                        title: 'Some toggle',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string>('asdfasdf'),
+                        type: FramedFormControlType.TOGGLE
+                    },
+                    {
+                        title: 'Some toggle',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string>('asdfasdf'),
+                        type: FramedFormControlType.CHECKBOX
+                    }
+                ]
+            },
+            {
+                controls: [
+                    {
+                        title: 'Some toggle',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string>('asdfasdf'),
+                        type: FramedFormControlType.CHECKBOX
+                    },
+                    {
+                        title: 'Some toggle',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string>('asdfasdf'),
+                        type: FramedFormControlType.CHECKBOX
+                    }
+                ]
             }
         ]
     });
