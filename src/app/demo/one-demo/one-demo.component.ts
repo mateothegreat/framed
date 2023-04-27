@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { FramedAlignment } from '../../../../projects/lib/src/lib/common/alignment';
 import { FramedLevel } from '../../../../projects/lib/src/lib/common/levels';
 import { Breadcrumb } from '../../../../projects/lib/src/lib/components/breadcrumbs/breadcrumb';
 import { FramedButton } from '../../../../projects/lib/src/lib/components/buttons/button';
+import { FramedForm } from '../../../../projects/lib/src/lib/components/forms/form';
+import { FramedFormControlType } from '../../../../projects/lib/src/lib/components/forms/form-control-type';
+import { FramedModalsService } from '../../../../projects/lib/src/lib/components/modals/modals.service';
 import { FramedToggle } from '../../../../projects/lib/src/lib/components/toggle/toggle';
 import { FramedTypeahead } from '../../../../projects/lib/src/lib/components/typeahead/typeahead';
 import { TwoDemoComponent } from '../two-demo/two-demo.component';
@@ -58,4 +62,50 @@ export class OneDemoComponent {
         data: ['Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut'],
         selected: ['Alabama', 'Alaska']
     });
+
+    public form: FramedForm = new FramedForm({
+        rows: [
+            {
+                controls: [
+                    {
+                        title: 'asdfasdf',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string>('asdf'),
+                        type: FramedFormControlType.TEXT
+                    },
+                    {
+                        title: 'asdfasdf',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string[]>(['b']),
+                        data: ['a', 'b', 'c'],
+                        type: FramedFormControlType.SELECT
+                    }
+                ]
+            },
+            {
+                controls: [
+                    {
+                        title: 'asdfasdf',
+                        subtitle: 'as dfasdfa sdfadsf asd',
+                        placeholder: 'Enter something here..',
+                        control: new FormControl<string>('asdfasdf'),
+                        type: FramedFormControlType.TEXTAREA
+                    }
+                ]
+            }
+        ]
+    });
+
+    public constructor(private readonly modalrService: FramedModalsService) {
+        // const instance = this.modalrService.open({
+        //     name: 'child',
+        //     component: ModalContainerComponent
+        // });
+        // console.log(instance);
+        // setTimeout(() => {
+        //     this.modalrService.close('child');
+        // }, 2000);
+    }
 }

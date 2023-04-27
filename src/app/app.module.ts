@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FramedBreadcrumbsComponent } from '../../projects/lib/src/lib/components/breadcrumbs/breadcrumbs.component';
 import { FramedButtonComponent } from '../../projects/lib/src/lib/components/buttons/button.component';
 import { FramedExpandableComponent } from '../../projects/lib/src/lib/components/expandable/expandable.component';
+import { FramedFormComponent } from '../../projects/lib/src/lib/components/forms/form.component';
 import { FramedRadioComponents } from '../../projects/lib/src/lib/components/radios/radio-components.component';
 import { FramedToggleComponent } from '../../projects/lib/src/lib/components/toggle/toggle.component';
 import { FramedToolbarComponent } from '../../projects/lib/src/lib/components/toolbar/toolbar.component';
@@ -48,6 +49,7 @@ import { CodeBlockComponent } from './shared/code-block.component';
         FramedBreadcrumbsComponent,
         FramedButtonComponent,
         FramedExpandableComponent,
+        FramedFormComponent,
         FramedRadioComponents,
         FramedToggleComponent,
         FramedToolbarComponent,
