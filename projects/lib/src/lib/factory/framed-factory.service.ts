@@ -39,9 +39,13 @@ export class FramedFactoryService {
         return this.outlets[outlet];
     }
 
-    public add<T>(config: FramedConfig<T>): void {
-        this.configs.push(new FramedConfig<any>(config));
+    public add<T>(config: FramedConfig<T>): FramedConfig<T> {
+        const instance = new FramedConfig<any>(config);
+
+        this.configs.push(config);
         this.rightSize();
+
+        return instance;
     }
 
     public rightSize(): void {

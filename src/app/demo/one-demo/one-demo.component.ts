@@ -9,6 +9,7 @@ import { FramedFormControlType } from '../../../../projects/lib/src/lib/componen
 import { FramedModalsService } from '../../../../projects/lib/src/lib/components/modals/modals.service';
 import { FramedToggle } from '../../../../projects/lib/src/lib/components/toggle/toggle';
 import { FramedTypeahead } from '../../../../projects/lib/src/lib/components/typeahead/typeahead';
+import { DropdownComponent } from '../buttons/dropdown/dropdown.component';
 import { TwoDemoComponent } from '../two-demo/two-demo.component';
 
 @Component({
@@ -39,7 +40,8 @@ export class OneDemoComponent {
     });
     public button2: FramedButton<string> = new FramedButton({
         level: FramedLevel.SUCCESS,
-        count: 13
+        count: 13,
+        open: DropdownComponent
     });
     public button3: FramedButton<TwoDemoComponent> = new FramedButton({
         level: FramedLevel.ERROR,

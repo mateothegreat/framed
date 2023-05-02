@@ -1,9 +1,9 @@
-import { NavigationExtras } from '@angular/router';
+import { Type } from '@angular/core';
 
 export interface FramedButtonDropdownItem<T> {
     label: string;
-    route?: { commands: any[]; extras?: NavigationExtras };
     click?: Function;
+    componentType?: Type<T>;
     extra?: T;
     disabled?: boolean;
 }

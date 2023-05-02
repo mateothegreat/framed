@@ -1,12 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FramedConfig } from './framed-config';
-import { FramedService } from './framed.service';
 
 @Component({
     selector: 'framed-panel',
     template: `
         <div [ngClass]="config.theme.panel" class="overflow-auto w-full h-full">
-            <div class="flex flex-1 w-full overflow-auto h-full">
+            <div (scroll)="config.change$?.next($any('SCROLL'))" class="flex flex-1 w-full overflow-auto h-full">
                 <div class="flex-1 w-full" *ngComponentOutlet="config.componentType"></div>
                 <!--                <div class="p-5">-->
                 <!--                    <pre>-->
@@ -38,7 +37,7 @@ import { FramedService } from './framed.service';
 })
 export class FramedPanelComponent<T> {
     @Input() config: FramedConfig<T>;
-    @Output() dragStart: EventEmitter<FramedConfig<T>> = new EventEmitter();
 
-    public constructor(private readonly framedService: FramedService) {}
+    @Output() dragStart: EventEmitter<FramedConfig<T>> = new EventEmitter();
+    @Output() onScroll: EventEmitter<void> = new EventEmitter();
 }

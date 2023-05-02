@@ -27,6 +27,7 @@ export class FramedButton<T> {
     public busy?: boolean;
     public level?: FramedLevel;
     public theme?: FramedButtonTheme = new FramedButtonDefaultTheme();
+    public open?: Type<any>;
 
     public constructor(obj?: FramedButton<T>) {
         Object.assign(this, obj);

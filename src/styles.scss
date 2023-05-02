@@ -23,3 +23,15 @@ body {
 // @import "prismjs/themes/prism-solarizedlight.css";
 // @import "prismjs/themes/prism-tomorrow.css";
 // @import "prismjs/themes/prism-twilight.css";
+
+.popper-custom {
+    padding: 0 !important;
+    margin: 0 !important;;
+    border-radius: 0 !important;;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.popper-custom-arrow {
+    display: none;
+}
